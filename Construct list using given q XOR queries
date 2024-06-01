@@ -1,0 +1,18 @@
+class Solution {
+  public:
+    vector<int> constructList(int q, vector<vector<int>> &queries) {
+        // code here
+        vector<int> out={0};
+        int xorr=0;
+        
+        for(auto q : queries){
+            if(q[0] == 0) out.push_back(xorr ^ q[1]);
+            else xorr ^= q[1];
+        }
+
+        for(auto &x : out) x ^= xorr;
+        sort(out.begin(),out.end());    
+        return out;
+    }
+
+};
