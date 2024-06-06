@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    long long max_sum(int a[], int n) {
+        // Your code here
+          long long sum = 0;
+    long long till_now = 0;
+
+    for (long long i = 0; i < n; i++) {
+        sum += (long long)a[i];
+        till_now += (i * (long long)a[i]);
+    }
+
+    long long ans = till_now;
+
+    for (long long i = 0; i < n; i++) {
+        long long curr = till_now + (long long)a[i] * n - sum;
+        till_now = curr;
+        ans = max(ans, curr);
+    }
+
+    return ans;
+    }
+};
