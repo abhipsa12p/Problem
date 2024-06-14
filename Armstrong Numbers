@@ -1,0 +1,13 @@
+class Solution {
+  public:
+     string armstrongNumber(int n) {
+        int ld;
+        int sum=0;
+        ld = n%10;
+        int sd = (n%100-ld)/10;
+        int fd = ( n - n%100 )/100;
+        sum += ld*ld*ld + sd*sd*sd + fd*fd*fd;
+        if(sum==n) return "true";
+        else return "false";
+    }
+};
