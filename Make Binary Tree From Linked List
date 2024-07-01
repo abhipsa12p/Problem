@@ -1,0 +1,39 @@
+void constructTree(vector<int> &v, int indx, TreeNode* root) {
+    // Base case: if the index is out of bounds, return
+    if(indx >= v.size()) {
+        return;
+    }
+    
+    // Calculate the indices for left and right children
+    int leftChildIndex = 2 * indx + 1;
+    int rightChildIndex = 2 * indx + 2;
+    
+    // Construct left subtree if left child index is within bounds
+    if (leftChildIndex < v.size()) {
+        root->left = new TreeNode(v[leftChildIndex]);
+        constructTree(v, leftChildIndex, root->left);
+    }
+    
+    // Construct right subtree if right child index is within bounds
+    if (rightChildIndex < v.size()) {
+        root->right = new TreeNode(v[rightChildIndex]);
+        constructTree(v, rightChildIndex, root->right);
+    }
+}
+
+// Function to make binary tree from linked list.
+void convert(Node *head, TreeNode *&root) {
+    // Step-1: Convert the linked list into a vector
+    vector<int> v;
+    Node* temp = head;
+    while(temp != NULL) {
+        v.push_back(temp->data);
+        temp = temp->next;
+    }
+    
+    // Step-2: Create the root node and construct the binary tree
+    if (!v.empty()) {
+        root = new TreeNode(v[0]);
+        constructTree(v, 0, root);
+    }
+}
