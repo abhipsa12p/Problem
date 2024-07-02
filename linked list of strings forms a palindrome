@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    bool compute(Node* head) {
+        // Your code goes here
+        
+        string st="";
+        while(head){
+            st+=head->data;
+            head=head->next;
+        }
+        int s=0; 
+        int e=st.size()-1;
+        while(s<e){
+            if(st[s]==st[e]){
+                s++;
+                e--;
+            }
+            else return false;
+        }
+        return true;
+    }
+};
