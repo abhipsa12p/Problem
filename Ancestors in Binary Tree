@@ -1,0 +1,27 @@
+class Solution {
+    private:
+    vector<int> ans;
+
+//this function find all the ancestors in the tree
+    void findAncestor(struct Node*root,int target,vector<int> &temp)
+    {
+        if(!root) return;
+        if(root -> data == target){
+            ans = temp;
+            return ;
+        }
+        temp.push_back(root->data);
+        findAncestor(root->left,target,temp);
+        findAncestor(root->right,target,temp);
+        temp.pop_back();
+    }
+  public:
+    // Function should return all the ancestor of the target node
+    vector<int> Ancestors(struct Node *root, int target) {
+        vector<int> temp ;
+        findAncestor(root,target,temp);
+        reverse(ans.begin(),ans.end());
+        
+        return ans;
+    }
+};
