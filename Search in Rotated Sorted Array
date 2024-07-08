@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    int search(vector<int>& arr, int key) {
+        // complete the function here
+        int left=0;
+        int right=arr.size()-1;
+        
+        
+        while(left<=right){
+            if(arr[left]==key)
+                return left;
+            else if(arr[right]==key)
+                return right;
+            
+            left++;
+            right--;
+        }
+        
+        return -1;
+    }
+};
