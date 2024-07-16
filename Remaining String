@@ -1,0 +1,17 @@
+string printString(string s, char ch, int count) {
+        // Your code goes here
+        int i=0;
+        while(i<s.length() && count!=0){
+            if(s[i]==ch){
+                count--;
+            }
+            
+            i++;
+        }
+        
+        if(count==0){
+            return s.substr(i,s.length());
+        }else{
+            return "";
+        }
+    }
