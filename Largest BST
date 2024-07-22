@@ -1,0 +1,33 @@
+class NodeVal{
+    public:
+    int minVal,maxVal,maxSize;
+    NodeVal(int minVal,int maxVal,int maxSize){
+        this->minVal = minVal;
+        this->maxVal = maxVal;
+        this->maxSize=maxSize;
+    }
+};
+
+class Solution{
+    NodeVal largestBstHelper(Node * root){
+        if(!root){
+            return NodeVal(INT_MAX,INT_MIN,0);
+        }
+        auto LEFT = largestBstHelper(root->left);
+        auto RIGHT = largestBstHelper(root->right);
+        
+        if(LEFT.maxVal < root->data and RIGHT.minVal > root->data){
+            return NodeVal( min(root->data,LEFT.minVal),
+                            max(root->data,RIGHT.maxVal),
+                            LEFT.maxSize+RIGHT.maxSize+1
+                          );
+        }
+        else return NodeVal(INT_MIN,INT_MAX,max(LEFT.maxSize,RIGHT.maxSize));
+    }
+    public:
+    int largestBst(Node *root)
+    {
+        return largestBstHelper(root).maxSize;
+    }
+};
+
